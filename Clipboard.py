@@ -17,9 +17,9 @@ from pynput import keyboard, mouse
 
 keyboard_controller = keyboard.Controller()
 
-# =============================================================================
-# 1. DESIGN UND STYLES
-# =============================================================================
+
+# DESIGN UND STYLES
+
 DARK_COLORS = { "window_bg": "#2b2b2b", "item_bg": "#3c3c3c", "item_hover_bg": "#505050", "border": "#444", "hover_border": "#6a6a6a", "text": "#f0f0f0", "button_bg": "#555", "button_hover_bg": "#666" }
 LIGHT_COLORS = { "window_bg": "#ffffff", "item_bg": "#f0f0f0", "item_hover_bg": "#e0e0e0", "border": "#dcdcdc", "hover_border": "#c0c0c0", "text": "#1c1c1c", "button_bg": "#e1e1e1", "button_hover_bg": "#d1d1d1" }
 
@@ -60,9 +60,9 @@ class ClipboardItemDelegate(QStyledItemDelegate):
         text_rect = metrics.boundingRect(QRect(0, 0, width, 5000), Qt.TextWordWrap, text); calculated_lines = text_rect.height() / line_height; actual_lines = min(self.MAX_LINES, calculated_lines)
         height = int(actual_lines * line_height + self.ITEM_PADDING * 2); return QSize(option.rect.width(), max(50, height))
 
-# =============================================================================
-# 2. HELFERKLASSEN
-# =============================================================================
+
+# HELFERKLASSEN
+
 class SignalEmitter(QObject):
     hotkey_pressed = pyqtSignal(); global_mouse_press = pyqtSignal()
 
@@ -89,9 +89,9 @@ class SettingsDialog(QDialog):
     def get_settings(self):
         return { "history_limit": self.history_limit.value(), "hotkey": self.hotkey_edit.keySequence().toString().lower(), "theme": self.theme_combo.currentText(), "auto_paste": self.auto_paste_checkbox.isChecked(), "font_size": self.font_size_spinbox.value() }
 
-# =============================================================================
-# 3. HAUPTANWENDUNG
-# =============================================================================
+
+# HAUPTANWENDUNG
+
 class ClipboardHistory(QWidget):
     def __init__(self):
         super().__init__(); self.setObjectName("MainWindow"); self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool); self.setAttribute(Qt.WA_TranslucentBackground)
@@ -145,7 +145,7 @@ class ClipboardHistory(QWidget):
     def get_appdata_path(self, filename):
         appdata = os.getenv('APPDATA') or os.path.expanduser('~'); app_dir = os.path.join(appdata, 'ClipboardHistory'); os.makedirs(app_dir, exist_ok=True); return os.path.join(app_dir, filename)
     
-    # *** HIER WURDEN DIE STANDARD-EINSTELLUNGEN ANGEPASST ***
+
     def load_settings(self):
         try:
             with open(self.get_appdata_path('settings.json'), 'r', encoding='utf-8') as f: return json.load(f)
@@ -227,14 +227,14 @@ class ClipboardHistory(QWidget):
         if self.mouse_listener: self.mouse_listener.stop()
         event.accept()
 
-# =============================================================================
-# 4. ANWENDUNGSSTART
-# =============================================================================
+
+# ANWENDUNGSSTART
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     clipboard_app = ClipboardHistory()
     app.setQuitOnLastWindowClosed(False) 
-    sys.exit(app.exec_())# -*- coding: utf-8 -*-
+    sys.exit(app.exec_())
 import sys
 import os
 import json
@@ -253,9 +253,9 @@ from pynput import keyboard, mouse
 
 keyboard_controller = keyboard.Controller()
 
-# =============================================================================
-# 1. DESIGN UND STYLES
-# =============================================================================
+
+# DESIGN UND STYLES
+
 DARK_COLORS = { "window_bg": "#2b2b2b", "item_bg": "#3c3c3c", "item_hover_bg": "#505050", "border": "#444", "hover_border": "#6a6a6a", "text": "#f0f0f0", "button_bg": "#555", "button_hover_bg": "#666" }
 LIGHT_COLORS = { "window_bg": "#ffffff", "item_bg": "#f0f0f0", "item_hover_bg": "#e0e0e0", "border": "#dcdcdc", "hover_border": "#c0c0c0", "text": "#1c1c1c", "button_bg": "#e1e1e1", "button_hover_bg": "#d1d1d1" }
 
@@ -296,9 +296,9 @@ class ClipboardItemDelegate(QStyledItemDelegate):
         text_rect = metrics.boundingRect(QRect(0, 0, width, 5000), Qt.TextWordWrap, text); calculated_lines = text_rect.height() / line_height; actual_lines = min(self.MAX_LINES, calculated_lines)
         height = int(actual_lines * line_height + self.ITEM_PADDING * 2); return QSize(option.rect.width(), max(50, height))
 
-# =============================================================================
-# 2. HELFERKLASSEN
-# =============================================================================
+
+# HELFERKLASSEN
+
 class SignalEmitter(QObject):
     hotkey_pressed = pyqtSignal(); global_mouse_press = pyqtSignal()
 
@@ -325,9 +325,9 @@ class SettingsDialog(QDialog):
     def get_settings(self):
         return { "history_limit": self.history_limit.value(), "hotkey": self.hotkey_edit.keySequence().toString().lower(), "theme": self.theme_combo.currentText(), "auto_paste": self.auto_paste_checkbox.isChecked(), "font_size": self.font_size_spinbox.value() }
 
-# =============================================================================
-# 3. HAUPTANWENDUNG
-# =============================================================================
+
+# HAUPTANWENDUNG
+
 class ClipboardHistory(QWidget):
     def __init__(self):
         super().__init__(); self.setObjectName("MainWindow"); self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool); self.setAttribute(Qt.WA_TranslucentBackground)
@@ -381,7 +381,7 @@ class ClipboardHistory(QWidget):
     def get_appdata_path(self, filename):
         appdata = os.getenv('APPDATA') or os.path.expanduser('~'); app_dir = os.path.join(appdata, 'ClipboardHistory'); os.makedirs(app_dir, exist_ok=True); return os.path.join(app_dir, filename)
     
-    # *** HIER WURDEN DIE STANDARD-EINSTELLUNGEN ANGEPASST ***
+
     def load_settings(self):
         try:
             with open(self.get_appdata_path('settings.json'), 'r', encoding='utf-8') as f: return json.load(f)
@@ -463,11 +463,12 @@ class ClipboardHistory(QWidget):
         if self.mouse_listener: self.mouse_listener.stop()
         event.accept()
 
-# =============================================================================
-# 4. ANWENDUNGSSTART
-# =============================================================================
+
+# ANWENDUNGSSTART
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     clipboard_app = ClipboardHistory()
     app.setQuitOnLastWindowClosed(False) 
+
     sys.exit(app.exec_())           
